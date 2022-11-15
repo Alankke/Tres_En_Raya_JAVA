@@ -75,8 +75,24 @@ public class TicTacToe extends JFrame implements ActionListener {
     public void Revisar(){
     }
     public void ganoX(int x, int y, int z){
+        botones[x].setBackground(Color.GREEN);
+        botones[y].setBackground(Color.GREEN);
+        botones[z].setBackground(Color.GREEN);
+
+        for (int i = 0 ; i<9 ; i++){
+            botones[i].setEnabled(false); //Hacemos que los botones estén deshabilitados para que no se pueda presionar más.
+        }
+        area_de_texto_turno.setText("Gano X!");
     }
     public void ganoO(int x, int y, int z){
+        botones[x].setBackground(Color.GREEN);
+        botones[y].setBackground(Color.GREEN);
+        botones[z].setBackground(Color.GREEN);
+
+        for (int i = 0 ; i<9 ; i++){
+            botones[i].setEnabled(false); //Hacemos que los botones estén deshabilitados para que no se pueda presionar más
+        }
+        area_de_texto_turno.setText("Gano O!");
     }
     public void empate(){
     }
