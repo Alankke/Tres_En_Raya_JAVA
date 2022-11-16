@@ -47,7 +47,7 @@ public class TicTacToe extends JFrame implements ActionListener {
         for (int i = 0; i<9; i++){
             botones[i] = new JButton();
             panel_botones.add(botones[i]);
-            botones[i].setFont(new Font("OCR-A BT", Font.ITALIC, 100));
+            botones[i].setFont(new Font("Bradley Hand ITC", Font.ITALIC, 100));
             botones[i].setFocusable(false);
             botones[i].addActionListener(this);
         }
@@ -73,8 +73,159 @@ public class TicTacToe extends JFrame implements ActionListener {
         }
     }
     public void Revisar(){
+        //checkear si gana X:
+        //Condiciones horizontales
+        if (
+                (botones[0].getText() == "X") &&
+                        (botones[1].getText() == "X") &&
+                        (botones[2].getText() == "X")
+        ) {
+            xGana(0, 1, 2);
+        }
+
+        if (
+                (botones[3].getText() == "X") &&
+                        (botones[4].getText() == "X") &&
+                        (botones[5].getText() == "X")
+        ) {
+            xGana(3, 4, 5);
+        }
+
+        if (
+                (botones[6].getText() == "X") &&
+                        (botones[7].getText() == "X") &&
+                        (botones[8].getText() == "X")
+        ) {
+            xGana(6, 7, 8);
+        }
+
+        // Condiciones verticales.
+        if (
+                (botones[0].getText() == "X") &&
+                        (botones[3].getText() == "X") &&
+                        (botones[6].getText() == "X")
+        ) {
+            xGana(0, 3, 6);
+        }
+
+        if (
+                (botones[1].getText() == "X") &&
+                        (botones[4].getText() == "X") &&
+                        (botones[7].getText() == "X")
+        ) {
+            xGana(1, 4, 7);
+        }
+
+        if (
+                (botones[2].getText() == "X") &&
+                        (botones[5].getText() == "X") &&
+                        (botones[8].getText() == "X")
+        ) {
+            xGana(2, 5, 8);
+        }
+
+        //Condiciones Diagonales
+        if (
+                (botones[0].getText() == "X") &&
+                        (botones[4].getText() == "X") &&
+                        (botones[8].getText() == "X")
+        ) {
+            xGana(0, 4, 8);
+        }
+
+        if (
+                (botones[2].getText() == "X") &&
+                        (botones[4].getText() == "X") &&
+                        (botones[6].getText() == "X")
+        ) {
+            xGana(2, 4, 6);
+        }
+
+        //Checkear si gana O:
+        //Condiciones horizontales
+        if (
+                (botones[0].getText() == "O") &&
+                        (botones[1].getText() == "O") &&
+                        (botones[2].getText() == "O")
+        ) {
+            oGana(0, 1, 2);
+        }
+
+        if (
+                (botones[3].getText() == "O") &&
+                        (botones[4].getText() == "O") &&
+                        (botones[5].getText() == "O")
+        ) {
+            oGana(3, 4, 5);
+        }
+
+        if (
+                (botones[6].getText() == "O") &&
+                        (botones[7].getText() == "O") &&
+                        (botones[8].getText() == "O")
+        ) {
+            oGana(6, 7, 8);
+        }
+
+        //Condiciones verticales
+        if (
+                (botones[0].getText() == "O") &&
+                        (botones[3].getText() == "O") &&
+                        (botones[6].getText() == "O")
+        ) {
+            oGana(0, 3, 6);
+        }
+
+        if (
+                (botones[1].getText() == "O") &&
+                        (botones[4].getText() == "O") &&
+                        (botones[7].getText() == "O")
+        ) {
+            oGana(1, 4, 7);
+        }
+
+        if (
+                (botones[2].getText() == "O") &&
+                        (botones[5].getText() == "O") &&
+                        (botones[8].getText() == "O")
+        ) {
+            oGana(2, 5, 8);
+        }
+
+        //Condiciones diagonales
+        if (
+                (botones[0].getText() == "O") &&
+                        (botones[4].getText() == "O") &&
+                        (botones[8].getText() == "O")
+        ) {
+            oGana(0, 4, 8);
+        }
+
+        if (
+                (botones[2].getText() == "O") &&
+                        (botones[4].getText() == "O") &&
+                        (botones[6].getText() == "O")
+        ) {
+            oGana(2, 4, 6);
+        }
+        // Condiciones de empate, si todos los botones tienen texto y el area de texto es distinto de cualquiera de los dos "ganó" llama al metodo empatar.
+        if(
+                (botones[0].getText() !="") &&
+                        (botones[1].getText() !="") &&
+                        (botones[2].getText() !="") &&
+                        (botones[3].getText() !="") &&
+                        (botones[4].getText() !="") &&
+                        (botones[5].getText() !="") &&
+                        (botones[6].getText() !="") &&
+                        (botones[7].getText() !="") &&
+                        (botones[8].getText() !="") &&
+                        (area_de_texto_turno.getText() != "Gano X!") &&
+                        (area_de_texto_turno.getText() != "Gano O!")
+        ) {
+            empate();
+        }
     }
-    public void ganoX(int x, int y, int z){
+    public void xGana(int x, int y, int z){
         botones[x].setBackground(Color.GREEN);
         botones[y].setBackground(Color.GREEN);
         botones[z].setBackground(Color.GREEN);
@@ -84,7 +235,7 @@ public class TicTacToe extends JFrame implements ActionListener {
         }
         area_de_texto_turno.setText("Gano X!");
     }
-    public void ganoO(int x, int y, int z){
+    public void oGana(int x, int y, int z){
         botones[x].setBackground(Color.GREEN);
         botones[y].setBackground(Color.GREEN);
         botones[z].setBackground(Color.GREEN);
@@ -95,9 +246,36 @@ public class TicTacToe extends JFrame implements ActionListener {
         area_de_texto_turno.setText("Gano O!");
     }
     public void empate(){
+        for (int i = 0 ; i<9 ; i++){
+            botones[i].setEnabled(false);//Hacemos que los botones estén deshabilitados para que no se pueda presionar más
+            botones[i].setBackground(Color.RED); // Hacemos toda la grilla roja porque ninguno ganó
+        }
+        area_de_texto_turno.setText("Empate :(");
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        //En este for evaluamos boton por boton y vamos cambiando de turno, al terminar de cambiar de turno checkeamos si alguno de los dos gana.
+        for (int i = 0 ; i<9 ; i++){
+            if(e.getSource() == botones[i]){ //Si se presiona el boton entonces va preguntando si esta vacio ese boton y demás cosas.
+                if(turno1){
+                    if(botones[i].getText() == ""){ //Solo si no hay ningún texto pone la X
+                        botones[i].setForeground(new Color(255,0,0));
+                        botones[i].setText("X");
+                        turno1 = false;
+                        area_de_texto_turno.setText("Turno de O");
+                        Revisar();
+                    }
+                }
+                else{
+                    if(botones[i].getText() == ""){ //Solo si no hay ningún texto pone la O
+                        botones[i].setForeground(new Color(0,0,255));
+                        botones[i].setText("O");
+                        turno1 = true;
+                        area_de_texto_turno.setText("Turno de X");
+                        Revisar();
+                    }
+                }
+            }
+        }
     }
-
 }
